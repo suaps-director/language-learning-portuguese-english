@@ -3,83 +3,90 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>12‑Week English Course (PT‑BR → EN)</title>
-<meta name="description" content="A2/B1 → Conversational fluency in 12 weeks. Task-based, spaced repetition, shadowing, weekly assessments." />
+<title>12-Week English Course · PT-BR → EN</title>
+<meta name="description" content="A2/B1 Brazilian Portuguese learner to conversational fluency in 12 weeks. Task-based, SRS, shadowing, weekly assessments." />
 <style>
-  :root { --bg:#0f172a; --panel:#111827; --ink:#e5e7eb; --muted:#9ca3af; --accent:#22d3ee; --ok:#34d399; --warn:#f59e0b; --bad:#ef4444; }
+  :root { --bg:#0f172a; --panel:#111827; --ink:#e5e7eb; --muted:#9ca3af; --accent:#22d3ee; --ok:#34d399; --warn:#f59e0b; --bad:#ef4444; --line:#1f2937; }
+  *{box-sizing:border-box}
   html,body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;background:var(--bg);color:var(--ink);}
-  header{display:flex;gap:.75rem; align-items:center; padding:1rem; border-bottom:1px solid #1f2937; position:sticky; top:0; background:rgba(15,23,42,.9); backdrop-filter:saturate(1.2) blur(6px); z-index:10;}
+  header{display:flex;gap:.75rem; align-items:center; padding:1rem; border-bottom:1px solid var(--line); position:sticky; top:0; background:rgba(15,23,42,.9); backdrop-filter:saturate(1.1) blur(6px); z-index:10;}
   header h1{font-size:1rem;margin:0;color:#fff;font-weight:700}
   header small{color:var(--muted)}
   .wrap{display:grid; grid-template-columns: 320px 1fr; gap:1rem; padding:1rem; min-height:calc(100vh - 64px);}
-  aside{background:var(--panel); border:1px solid #1f2937; border-radius:12px; padding:.75rem; display:flex; flex-direction:column; gap:.5rem;}
+  aside{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:.75rem; display:flex; flex-direction:column; gap:.75rem; align-self:start; position:sticky; top:80px;}
   main{display:flex; flex-direction:column; gap:.75rem;}
-  .card{background:var(--panel); border:1px solid #1f2937; border-radius:12px; padding:1rem;}
+  .card{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:1rem;}
   .row{display:flex; flex-wrap:wrap; gap:.5rem; align-items:center}
-  button, select, input[type="file"]{background:#0b1220; color:var(--ink); border:1px solid #1f2937; padding:.55rem .7rem; border-radius:10px; cursor:pointer;}
-  button:hover{border-color:#334155}
-  .pill{font-size:.8rem; padding:.3rem .5rem; border-radius:999px; border:1px solid #334155;}
-  .weekBtn{width:100%; text-align:left}
-  .weekBtn.active{outline:2px solid var(--accent)}
-  .muted{color:var(--muted)}
   .grid{display:grid; gap:.75rem;}
   .two{grid-template-columns: 1fr 1fr;}
-  .three{grid-template-columns: repeat(3,1fr);}
-  .kbd{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background:#0b1220; border:1px solid #1f2937; padding:.1rem .35rem; border-radius:6px}
-  .badge{padding:.2rem .5rem; border:1px solid #1f2937; border-radius:8px; font-size:.75rem}
-  .good{color:var(--ok)} .warn{color:var(--warn)} .bad{color:var(--bad)}
-  details summary{cursor:pointer}
-  .flex-between{display:flex; justify-content:space-between; align-items:center}
-  .fcard{display:flex; flex-direction:column; gap:.5rem; border:1px dashed #334155; padding:.75rem; border-radius:10px;}
-  .q{margin:.4rem 0; padding:.5rem; border-radius:8px; background:#0b1220; border:1px solid #1f2937;}
-  textarea{width:100%; min-height:80px; background:#0b1220; color:var(--ink); border:1px solid #1f2937; border-radius:10px; padding:.6rem;}
-  .progress{height:10px; background:#0b1220; border:1px solid #1f2937; border-radius:8px; overflow:hidden}
-  .bar{height:100%; background:linear-gradient(90deg,var(--accent),#4ade80); width:0%}
+  .pill{font-size:.8rem; padding:.3rem .6rem; border-radius:999px; border:1px solid #334155;}
+  .weekBtn{width:100%; text-align:left; background:#0b1220; color:var(--ink); border:1px solid var(--line); padding:.6rem .7rem; border-radius:10px; cursor:pointer;}
+  .weekBtn:hover{border-color:#334155}
+  .weekBtn.active{outline:2px solid var(--accent)}
+  .muted{color:var(--muted)}
+  button, select, input[type="file"]{background:#0b1220; color:var(--ink); border:1px solid var(--line); padding:.55rem .7rem; border-radius:10px; cursor:pointer;}
+  button:hover{border-color:#334155}
+  button:disabled{cursor:not-allowed; opacity:0.5;}
+  .q{margin:.4rem 0; padding:.6rem; border-radius:8px; background:#0b1220; border:1px solid var(--line);}
   .small{font-size:.85rem}
-  @media(max-width:980px){ .wrap{grid-template-columns:1fr} }
+  .badge{padding:.2rem .5rem; border:1px solid var(--line); border-radius:8px; font-size:.75rem}
+  .good{color:var(--ok)} .warn{color:var(--warn)} .bad{color:var(--bad)}
+  textarea{width:100%; min-height:84px; background:#0b1220; color:var(--ink); border:1px solid var(--line); border-radius:10px; padding:.6rem;resize:vertical;}
+  .progress{height:10px; background:#0b1220; border:1px solid var(--line); border-radius:8px; overflow:hidden}
+  .bar{height:100%; background:linear-gradient(90deg,var(--accent),#4ade80); width:0%; transition:width 0.3s ease;}
+  .fc{border:1px dashed #334155; border-radius:10px; padding:.75rem; min-height:80px;}
+  li { margin-bottom: 0.5rem; }
+  ul, ol { padding-left: 20px; }
+  h3, h4 { margin-top: 0.5rem; margin-bottom: 0.5rem; }
+  @media(max-width:980px){ .wrap{grid-template-columns:1fr} aside{position:relative; top:0;} }
 </style>
 </head>
 <body>
 <header>
   <h1>EN Course · 12 Weeks</h1>
-  <small class="muted">A2/B1 → Conversational Fluency · PT‑BR friendly</small>
-  <span class="pill" id="statusPill">Salvo localmente</span>
+  <small class="muted" data-t-en="A2/B1 → Conversational" data-t-pt="A2/B1 → Conversacional">A2/B1 → Conversational</small>
+  <span class="pill" id="statusPill" data-t-en="Saved locally" data-t-pt="Salvo localmente">Saved locally</span>
   <div style="margin-left:auto" class="row">
     <button id="toggleLang">🇧🇷/🇺🇸 UI</button>
-    <button id="exportBtn">Backup</button>
-    <label class="pill"><input type="file" id="importFile" style="display:none" /> <span id="importBtn" style="cursor:pointer">Restore</span></label>
+    <button id="exportBtn" data-t-en="Backup" data-t-pt="Backup">Backup</button>
+    <label class="pill" style="cursor:pointer">
+      <input type="file" id="importFile" style="display:none" />
+      <span id="importBtn" data-t-en="Restore" data-t-pt="Restaurar">Restore</span>
+    </label>
   </div>
 </header>
 
 <div class="wrap">
   <aside>
     <div class="row small">
-      <span class="badge">Goal: fluency</span>
+      <span class="badge" data-t-en="Goal: fluency" data-t-pt="Meta: fluência">Goal: fluency</span>
       <span class="badge">Method: CI + TBLT + SRS</span>
     </div>
     <div class="card">
       <div class="row small">
-        <strong>Weeks</strong>
-        <span class="muted">(Fri = assessment)</span>
+        <strong data-t-en="Weeks" data-t-pt="Semanas">Weeks</strong>
+        <span class="muted" data-t-en="(Fri = assessment)" data-t-pt="(Sex = avaliação)">(Fri = assessment)</span>
       </div>
       <div id="weekList" class="grid"></div>
     </div>
     <div class="card">
-      <div class="flex-between small"><strong>Daily Plan</strong><span class="muted" id="dayLabel"></span></div>
-      <div class="grid">
-        <button id="prevDay">← Prev</button>
-        <button id="nextDay">Next →</button>
+      <div class="row small" style="justify-content:space-between">
+        <strong data-t-en="Daily Plan" data-t-pt="Plano do Dia">Daily Plan</strong><span class="muted" id="dayLabel"></span>
+      </div>
+      <div class="grid" style="grid-template-columns:1fr 1fr">
+        <button id="prevDay" data-t-en="← Prev" data-t-pt="← Ant">← Prev</button>
+        <button id="nextDay" data-t-en="Next →" data-t-pt="Próx →">Next →</button>
       </div>
       <div class="progress" title="Overall progress">
         <div class="bar" id="overallBar"></div>
       </div>
-      <div class="small muted">Tip: press <span class="kbd">S</span> to speak (TTS), <span class="kbd">R</span> to record.</div>
+      <div class="small muted" style="margin-top:.35rem" data-t-en="Tip: press <b>S</b> = Speak (TTS), <b>R</b> = Record." data-t-pt="Dica: aperte <b>S</b> = Falar (TTS), <b>R</b> = Gravar.">Tip: press <b>S</b> = Speak (TTS), <b>R</b> = Record.</div>
     </div>
     <div class="card small">
-      <strong>Pronunciation Voice</strong>
+      <strong data-t-en="Pronunciation Voice" data-t-pt="Voz de Pronúncia">Pronunciation Voice</strong>
       <div class="grid">
         <select id="voiceSelect"></select>
-        <label>Rate <input type="range" id="rate" min="0.7" max="1.4" step="0.1" value="0.9"/></label>
+        <label><span data-t-en="Rate" data-t-pt="Velocidade">Rate</span> <input type="range" id="rate" min="0.7" max="1.4" step="0.1" value="0.95"/></label>
       </div>
     </div>
   </aside>
@@ -89,72 +96,72 @@
 
     <section class="card grid two">
       <div>
-        <h3>Input & Shadowing</h3>
+        <h3 data-t-en="Input & Shadowing" data-t-pt="Input & Shadowing">Input & Shadowing</h3>
         <div id="dialogue"></div>
         <div class="row">
-          <button id="speakBtn">🔊 Speak</button>
-          <button id="shadowBtn">🎧 Shadow (30s)</button>
+          <button id="speakBtn" data-t-en="🔊 Speak" data-t-pt="🔊 Falar">🔊 Speak</button>
+          <button id="shadowBtn" data-t-en="🎧 Shadow (30s)" data-t-pt="🎧 Sombra (30s)">🎧 Shadow (30s)</button>
         </div>
-        <div class="small muted">Sombra: ouça e repita imediatamente. Foque em ritmo e entonação.</div>
+        <div class="small muted" data-t-en="Shadow: listen and repeat immediately; focus on rhythm/intonation." data-t-pt="Sombra: ouça e repita imediatamente; foque ritmo/entonação.">Shadow: listen and repeat immediately; focus on rhythm/intonation.</div>
       </div>
       <div>
-        <h3>Record & Compare</h3>
+        <h3 data-t-en="Record & Compare" data-t-pt="Grave & Compare">Record & Compare</h3>
         <div class="row">
           <button id="recBtn">⏺️ Record</button>
           <button id="stopBtn" disabled>⏹️ Stop</button>
           <button id="playMeBtn" disabled>▶️ Play</button>
         </div>
         <audio id="me" controls style="width:100%; margin-top:.5rem"></audio>
-        <div class="small muted">Dica: tente igualar a duração e a pausa das frases.</div>
+        <div class="small muted" data-t-en="Tip: try to match pauses and sentence duration." data-t-pt="Dica: tente igualar pausas e duração das frases.">Tip: try to match pauses and sentence duration.</div>
       </div>
     </section>
 
     <section class="card grid two">
       <div>
-        <h3>Tasks (TBLT)</h3>
+        <h3 data-t-en="Tasks (TBLT)" data-t-pt="Tarefas (TBLT)">Tasks (TBLT)</h3>
         <div id="tasks"></div>
       </div>
       <div>
-        <h3>Grammar & Form</h3>
+        <h3 data-t-en="Grammar & Form" data-t-pt="Gramática & Forma">Grammar & Form</h3>
         <div id="grammar"></div>
       </div>
     </section>
 
     <section class="card grid two">
       <div>
-        <h3>Flashcards (SRS)</h3>
-        <div id="flashcards"></div>
+        <h3 data-t-en="Flashcards (SRS)" data-t-pt="Flashcards (SRS)">Flashcards (SRS)</h3>
+        <div id="flashcards" class="fc"></div>
         <div class="row">
-          <button id="fcHard">Hard</button>
-          <button id="fcGood">Good</button>
-          <button id="fcEasy">Easy</button>
+          <button id="fcHard" data-t-en="Hard" data-t-pt="Difícil">Hard</button>
+          <button id="fcGood" data-t-en="Good" data-t-pt="Bom">Good</button>
+          <button id="fcEasy" data-t-en="Easy" data-t-pt="Fácil">Easy</button>
         </div>
-        <div class="small muted">Use “Good/Easy” para avançar níveis. “Hard” volta 1 nível.</div>
+        <div class="small muted" data-t-en="Good/Easy advance; Hard goes back 1 level. Leitner boxes 1–5." data-t-pt="Bom/Fácil avançam; Difícil recua 1 nível. Caixas de Leitner 1–5.">Good/Easy advance; Hard goes back 1 level. Leitner boxes 1–5.</div>
       </div>
       <div>
-        <h3>Retrieval Practice</h3>
+        <h3 data-t-en="Retrieval Practice" data-t-pt="Prática de Recuperação">Retrieval Practice</h3>
         <div id="retrieval"></div>
-        <button id="checkRetrieval">Check</button>
+        <button id="checkRetrieval" data-t-en="Check" data-t-pt="Verificar">Check</button>
         <div id="retrievalResult" class="small"></div>
       </div>
     </section>
 
     <section class="card" id="assessment" style="display:none">
-      <h3>Friday Assessment</h3>
+      <h3 data-t-en="Friday Assessment" data-t-pt="Avaliação de Sexta">Friday Assessment</h3>
       <div id="quiz"></div>
-      <button id="submitQuiz">Submit</button>
+      <button id="submitQuiz" data-t-en="Submit" data-t-pt="Enviar">Submit</button>
       <div id="quizResult" class="small"></div>
     </section>
 
     <section class="card small">
       <details>
-        <summary>Course Pedagogy (why this works)</summary>
+        <summary><span data-t-en="Course Pedagogy (why this works)" data-t-pt="Pedagogia do Curso (por que funciona)">Course Pedagogy (why this works)</span></summary>
         <ul>
-          <li><b>Comprehensible Input</b> with Portuguese glosses to keep meaning clear.</li>
-          <li><b>Task‑Based Learning</b>: daily communicative tasks tied to travel/work/life.</li>
-          <li><b>Spaced Repetition</b> flashcards (Leitner) + <b>retrieval practice</b>.</li>
-          <li><b>Shadowing</b> with adjustable TTS + <b>record & compare</b>.</li>
-          <li><b>Weekly assessments</b> and a cumulative Week 12 capstone.</li>
+          <li><b>Comprehensible Input</b> with PT-BR glosses.</li>
+          <li><b>Task-Based Learning</b> aimed at travel/work/daily life.</li>
+          <li><b>Spaced Repetition</b> + <b>retrieval practice</b>.</li>
+          <li><b>Shadowing</b> with TTS + <b>record & compare</b>.</li>
+          <li><b>Weekly assessments</b> + Week 12 capstone.</li>
         </ul>
       </details>
     </section>
@@ -163,397 +170,162 @@
 
 <script>
 /* ==============================
-   Curriculum (12 weeks)
-   Structure drives daily lessons:
-   Mon–Thu = input + tasks; Fri = assessment.
-   ============================== */
+    12-Week Curriculum (full content)
+    ============================== */
 const COURSE = [
-  {
-    week:1, title:"Refresh & Routines", cefr:"A2→B1",
-    canDo:[
-      "Start/keep small talk about daily routine",
-      "Ask/answer present‑simple questions",
-      "Use time expressions & frequency"
-    ],
-    grammar:[
-      {en:"Present Simple vs. Present Continuous", pt:"Presente simples vs. contínuo"},
-      {en:"Adverbs of frequency (always, usually, often, sometimes, rarely, never)", pt:"Advérbios de frequência"},
-      {en:"Question forms: Do/Does…?", pt:"Perguntas com Do/Does"}
-    ],
-    tasks:[
-      "Describe your weekday routine to a colleague.",
-      "Plan a morning schedule for a busy day.",
-      "Interview a partner about habits (sleep, exercise, study).",
-      "Summarize similarities/differences."
-    ],
-    dialogue:[
-      ["A","What time do you usually wake up?"],
-      ["B","I usually wake up at six, but I get up at six‑thirty."],
-      ["A","Do you have breakfast at home?"],
-      ["B","Sometimes. When I'm late, I grab coffee on the way."]
-    ],
-    vocab:[
-      ["wake up","acordar"],["get up","levantar-se"],["have breakfast","tomar café da manhã"],
-      ["commute","trajeto"],["usually","geralmente"],["rarely","raramente"],["schedule","agenda"],
-      ["meeting","reunião"],["break","intervalo"],["task","tarefa"],["finish","terminar"],["start","começar"],
-      ["on time","no horário"],["late","atrasado"],["early","cedo"]
-    ]
+  { week:1, title:"Refresh & Routines", cefr:"A2→B1",
+    canDo:["Start small talk about daily routine","Ask/answer present-simple questions","Use time expressions & frequency"],
+    grammar:[ {en:"Present Simple vs. Present Continuous",pt:"Presente simples vs. contínuo"},
+              {en:"Adverbs of frequency (always, usually, often…)",pt:"Advérbios de frequência"},
+              {en:"Question forms: Do/Does…?",pt:"Perguntas com Do/Does"}],
+    tasks:["Describe your weekday routine to a colleague.","Plan a morning schedule for a busy day.","Interview a partner about habits.","Summarize similarities/differences."],
+    dialogue:[["A","What time do you usually wake up?"],["B","I usually wake up at six, but I get up at six-thirty."],["A","Do you have breakfast at home?"],["B","Sometimes. When I'm late, I grab coffee on the way."]],
+    vocab:[["wake up","acordar"],["get up","levantar-se"],["have breakfast","tomar café da manhã"],["commute","trajeto"],["usually","geralmente"],["rarely","raramente"],["schedule","agenda"],["meeting","reunião"],["break","intervalo"],["task","tarefa"],["finish","terminar"],["start","começar"],["on time","no horário"],["late","atrasado"],["early","cedo"]]
   },
-  {
-    week:2, title:"Travel 1 — Airports & Flights", cefr:"A2→B1",
-    canDo:[
-      "Check in, ask for gates, deal with delays",
-      "Understand announcements & basic signs",
-      "Request help politely"
-    ],
-    grammar:[
-      {en:"Polite requests: Could/Would/Can I…?", pt:"Pedidos educados"},
-      {en:"There is/There are", pt:"Há / Existe(m)"},
-      {en:"Prepositions of place", pt:"Preposições de lugar"}
-    ],
-    tasks:[
-      "Check in for a flight with special request.",
-      "Ask for directions to the gate/security.",
-      "Handle a delay and rebooking.",
-      "Role‑play an announcement summary."
-    ],
-    dialogue:[
-      ["Pax","Excuse me, which gate is Flight 247 to Boston?"],
-      ["Agent","It's Gate C12. Boarding starts at 6:40."],
-      ["Pax","Thank you! Also, is there a café nearby?"],
-      ["Agent","Yes, there's one next to C10."]
-    ],
-    vocab:[
-      ["gate","portão"],["boarding","embarque"],["delay","atraso"],["carry‑on","bagagem de mão"],
-      ["check‑in","check‑in"],["security","segurança"],["connection","conexão"],["announcement","anúncio"],
-      ["passport","passaporte"],["boarding pass","cartão de embarque"],["customs","alfândega"]
-    ]
+  { week:2, title:"Travel 1 — Airports & Flights", cefr:"A2→B1",
+    canDo:["Check in, ask for gates, deal with delays","Understand announcements & signs","Request help politely"],
+    grammar:[ {en:"Polite requests: Could/Would/Can I…?",pt:"Pedidos educados"},
+              {en:"There is/There are",pt:"Há/Existe(m)"},
+              {en:"Prepositions of place",pt:"Preposições de lugar"}],
+    tasks:["Check in for a flight with special request.","Ask for directions to the gate/security.","Handle a delay and rebooking.","Role-play an announcement summary."],
+    dialogue:[["Pax","Excuse me, which gate is Flight 247 to Boston?"],["Agent","It's Gate C12. Boarding starts at 6:40."],["Pax","Thank you! Also, is there a café nearby?"],["Agent","Yes, there's one next to C10."]],
+    vocab:[["gate","portão"],["boarding","embarque"],["delay","atraso"],["carry-on","bagagem de mão"],["check-in","check-in"],["security","segurança"],["connection","conexão"],["announcement","anúncio"],["passport","passaporte"],["boarding pass","cartão de embarque"],["customs","alfândega"]]
   },
-  {
-    week:3, title:"Work 1 — Jobs, Roles, Workplace Chat", cefr:"A2→B1",
-    canDo:[
-      "Introduce role & responsibilities",
-      "Ask for clarification at work",
-      "Participate in small talk at the office"
-    ],
-    grammar:[
-      {en:"Present Simple for routines at work", pt:"Rotina no trabalho"},
-      {en:"Like/need/want + to‑verb", pt:"Estruturas com to‑verb"},
-      {en:"Clarification phrases (Sorry? Could you repeat?)", pt:"Pedir esclarecimento"}
-    ],
-    tasks:[
-      "Introduce yourself and your job.",
-      "Clarify a task with your manager.",
-      "Give a brief status update.",
-      "Schedule a quick meeting."
-    ],
-    dialogue:[
-      ["A","What do you do?"],
-      ["B","I'm a project coordinator. I manage timelines and communication."],
-      ["A","Sounds busy! Do you enjoy it?"],
-      ["B","I do. I like organizing complicated projects."]
-    ],
-    vocab:[
-      ["deadline","prazo"],["task","tarefa"],["update","atualização"],["manage","gerenciar"],
-      ["responsible for","responsável por"],["team","equipe"],["meeting","reunião"],["schedule","agendar"],
-      ["clarify","esclarecer"],["status","status"]
-    ]
+  { week:3, title:"Work 1 — Jobs, Roles, Workplace Chat", cefr:"A2→B1",
+    canDo:["Introduce role & responsibilities","Ask for clarification at work","Participate in small talk at the office"],
+    grammar:[ {en:"Present Simple for routines at work",pt:"Rotina no trabalho"},
+              {en:"Like/need/want + to-verb",pt:"Estruturas com to-verb"},
+              {en:"Clarification phrases (Sorry? Could you repeat?)",pt:"Pedir esclarecimento"}],
+    tasks:["Introduce yourself and your job.","Clarify a task with your manager.","Give a brief status update.","Schedule a quick meeting."],
+    dialogue:[["A","What do you do?"],["B","I'm a project coordinator. I manage timelines and communication."],["A","Sounds busy! Do you enjoy it?"],["B","I do. I like organizing complicated projects."]],
+    vocab:[["deadline","prazo"],["task","tarefa"],["update","atualização"],["manage","gerenciar"],["responsible for","responsável por"],["team","equipe"],["meeting","reunião"],["schedule","agendar"],["clarify","esclarecer"],["status","status"]]
   },
-  {
-    week:4, title:"Daily Life — Shopping & Services", cefr:"A2→B1",
-    canDo:[
-      "Ask about prices, sizes, alternatives",
-      "Handle returns/exchanges",
-      "Use numbers and quantities confidently"
-    ],
-    grammar:[
-      {en:"Countable/Uncountable; some/any/much/many/a few/a little", pt:"Contáveis e incontáveis"},
-      {en:"Comparatives & superlatives (cheaper than, the cheapest)", pt:"Comparativos e superlativos"},
-      {en:"Would like…", pt:"Gostaria de…"}
-    ],
-    tasks:[
-      "Buy groceries with a budget.",
-      "Compare products and choose.",
-      "Return a product politely.",
-      "Ask for recommendations."
-    ],
-    dialogue:[
-      ["Customer","How much is this shirt?"],
-      ["Clerk","It's $25. We also have a cheaper one over there."],
-      ["Customer","I’ll try this one, thanks."]
-    ],
-    vocab:[
-      ["price","preço"],["size","tamanho"],["receipt","recibo"],["refund","reembolso"],
-      ["exchange","troca"],["budget","orçamento"],["discount","desconto"],["brand","marca"],
-      ["fit","caimento"],["quality","qualidade"],["cart","carrinho"]
-    ]
+  { week:4, title:"Daily Life — Shopping & Services", cefr:"A2→B1",
+    canDo:["Ask about prices, sizes, alternatives","Handle returns/exchanges","Use numbers and quantities confidently"],
+    grammar:[ {en:"Countable/Uncountable; some/any/much/many…",pt:"Contáveis e incontáveis"},
+              {en:"Comparatives & superlatives",pt:"Comparativos e superlativos"},
+              {en:"Would like…",pt:"Gostaria de…"}],
+    tasks:["Buy groceries with a budget.","Compare products and choose.","Return a product politely.","Ask for recommendations."],
+    dialogue:[["Customer","How much is this shirt?"],["Clerk","It's $25. We also have a cheaper one over there."],["Customer","I’ll try this one, thanks."]],
+    vocab:[["price","preço"],["size","tamanho"],["receipt","recibo"],["refund","reembolso"],["exchange","troca"],["budget","orçamento"],["discount","desconto"],["brand","marca"],["fit","caimento"],["quality","qualidade"],["cart","carrinho"]]
   },
-  {
-    week:5, title:"Transport & Directions", cefr:"A2→B1",
-    canDo:[
-      "Ask/give directions",
-      "Use public transport confidently",
-      "Describe routes and times"
-    ],
-    grammar:[
-      {en:"Imperatives (go straight, turn left)", pt:"Imperativos"},
-      {en:"Prepositions of movement (across, through, past)", pt:"Preposições de movimento"},
-      {en:"Future plans with going to", pt:"Futuro com going to"}
-    ],
-    tasks:[
-      "Get to a destination with transfers.",
-      "Explain a route to a visitor.",
-      "Handle a missed stop.",
-      "Plan tomorrow’s commute."
-    ],
-    dialogue:[
-      ["A","Excuse me, how do I get to the museum?"],
-      ["B","Go straight for two blocks, then turn left. The bus stop is on your right."]
-    ],
-    vocab:[
-      ["turn left/right","vire à esquerda/direita"],["block","quadra"],["across","através/de outro lado"],
-      ["past","além de"],["through","por dentro"],["transfer","baldeação"],["fare","tarifa"],
-      ["schedule","horário"],["platform","plataforma"]
-    ]
+  { week:5, title:"Transport & Directions", cefr:"A2→B1",
+    canDo:["Ask/give directions","Use public transport confidently","Describe routes and times"],
+    grammar:[ {en:"Imperatives (go straight, turn left)",pt:"Imperativos"},
+              {en:"Prepositions of movement",pt:"Preposições de movimento"},
+              {en:"Future plans with going to",pt:"Futuro com going to"}],
+    tasks:["Get to a destination with transfers.","Explain a route to a visitor.","Handle a missed stop.","Plan tomorrow’s commute."],
+    dialogue:[["A","Excuse me, how do I get to the museum?"],["B","Go straight for two blocks, then turn left. The bus stop is on your right."]],
+    vocab:[["turn left/right","vire à esquerda/direita"],["block","quadra"],["across","através/de outro lado"],["past","além de"],["through","por dentro"],["transfer","baldeação"],["fare","tarifa"],["schedule","horário"],["platform","plataforma"]]
   },
-  {
-    week:6, title:"Social English — Small Talk & Invitations", cefr:"A2→B1",
-    canDo:[
-      "Start/maintain light conversations",
-      "Make/accept/decline invitations politely",
-      "Speak about preferences"
-    ],
-    grammar:[
-      {en:"Present Continuous for arrangements", pt:"Marcações no presente contínuo"},
-      {en:"So/Neither do I; too/either", pt:"Concordâncias"},
-      {en:"Would you like to…?", pt:"Convites"}
-    ],
-    tasks:[
-      "Start conversation at a café.",
-      "Invite someone to an event.",
-      "Negotiate a time/place.",
-      "Follow up with a message."
-    ],
-    dialogue:[
-      ["A","Do you often come here?"],
-      ["B","Yeah, I love the coffee. Would you like to join me this Saturday?"]
-    ],
-    vocab:[
-      ["invite","convidar"],["plan","plano"],["join","juntar-se"],["prefer","preferir"],
-      ["free/available","disponível"],["suggest","sugerir"],["confirm","confirmar"]
-    ]
+  { week:6, title:"Social English — Small Talk & Invitations", cefr:"A2→B1",
+    canDo:["Start/maintain light conversations","Make/accept/decline invitations politely","Speak about preferences"],
+    grammar:[ {en:"Present Continuous for arrangements",pt:"Marcações no presente contínuo"},
+              {en:"So/Neither do I; too/either",pt:"Concordâncias"},
+              {en:"Would you like to…?",pt:"Convites"}],
+    tasks:["Start conversation at a café.","Invite someone to an event.","Negotiate a time/place.","Follow up with a message."],
+    dialogue:[["A","Do you often come here?"],["B","Yeah, I love the coffee. Would you like to join me this Saturday?"]],
+    vocab:[["invite","convidar"],["plan","plano"],["join","juntar-se"],["prefer","preferir"],["available","disponível"],["suggest","sugerir"],["confirm","confirmar"]]
   },
-  {
-    week:7, title:"Work 2 — Meetings, Emails, Requests", cefr:"B1",
-    canDo:[
-      "Make polite requests and offers",
-      "Participate in short meetings",
-      "Write clear, simple emails"
-    ],
-    grammar:[
-      {en:"Modals: can/could/would/should", pt:"Modais para pedidos/ofertas"},
-      {en:"Sequencing: first/then/after that/finally", pt:"Sequência"},
-      {en:"Indirect questions (Could you tell me…?)", pt:"Perguntas indiretas"}
-    ],
-    tasks:[
-      "Draft a meeting agenda.",
-      "Request information via email.",
-      "Assign action items.",
-      "Summarize decisions."
-    ],
-    dialogue:[
-      ["Lead","Could we start with updates?"],
-      ["You","Sure. First, we finished the prototype. Then we tested it."]
-    ],
-    vocab:[
-      ["agenda","pauta"],["minutes","ata"],["action item","tarefa"],["deadline","prazo"],
-      ["attach","anexar"],["follow up","acompanhar"],["approve","aprovar"]
-    ]
+  { week:7, title:"Work 2 — Meetings, Emails, Requests", cefr:"B1",
+    canDo:["Make polite requests and offers","Participate in short meetings","Write clear, simple emails"],
+    grammar:[ {en:"Modals: can/could/would/should",pt:"Modais para pedidos/ofertas"},
+              {en:"Sequencing: first/then/after that/finally",pt:"Sequência"},
+              {en:"Indirect questions (Could you tell me…?)",pt:"Perguntas indiretas"}],
+    tasks:["Draft a meeting agenda.","Request information via email.","Assign action items.","Summarize decisions."],
+    dialogue:[["Lead","Could we start with updates?"],["You","Sure. First, we finished the prototype. Then we tested it."]],
+    vocab:[["agenda","pauta"],["minutes","ata"],["action item","tarefa"],["deadline","prazo"],["attach","anexar"],["follow up","acompanhar"],["approve","aprovar"]]
   },
-  {
-    week:8, title:"Problem‑Solving — Complaints & Solutions", cefr:"B1",
-    canDo:[
-      "Describe problems clearly",
-      "Propose solutions & compromises",
-      "Escalate politely"
-    ],
-    grammar:[
-      {en:"Past Simple for what happened", pt:"Passado simples"},
-      {en:"Because/so/therefore/however", pt:"Conectores"},
-      {en:"First Conditionals (If… will…)", pt:"Condicionais de probabilidade"}
-    ],
-    tasks:[
-      "Report a broken product/service issue.",
-      "Negotiate a solution or refund.",
-      "Write a complaint + resolution summary.",
-      "Role‑play escalation."
-    ],
-    dialogue:[
-      ["Customer","The device stopped working yesterday."],
-      ["Support","I'm sorry to hear that. If you have the receipt, we can replace it."]
-    ],
-    vocab:[
-      ["issue/problem","problema"],["replace","substituir"],["warranty","garantia"],
-      ["escalate","escalar"],["resolve","resolver"],["refund","reembolso"],["support","suporte"]
-    ]
+  { week:8, title:"Problem-Solving — Complaints & Solutions", cefr:"B1",
+    canDo:["Describe problems clearly","Propose solutions & compromises","Escalate politely"],
+    grammar:[ {en:"Past Simple for what happened",pt:"Passado simples"},
+              {en:"Because/so/therefore/however",pt:"Conectores"},
+              {en:"First Conditionals (If… will…)",pt:"Condicionais de probabilidade"}],
+    tasks:["Report a broken product/service issue.","Negotiate a solution or refund.","Write a complaint + resolution summary.","Role-play escalation."],
+    dialogue:[["Customer","The device stopped working yesterday."],["Support","I'm sorry to hear that. If you have the receipt, we can replace it."]],
+    vocab:[["issue/problem","problema"],["replace","substituir"],["warranty","garantia"],["escalate","escalar"],["resolve","resolver"],["refund","reembolso"],["support","suporte"]]
   },
-  {
-    week:9, title:"Health & Emergencies", cefr:"B1",
-    canDo:[
-      "Explain symptoms & history",
-      "Understand basic medical advice",
-      "Handle emergencies calmly"
-    ],
-    grammar:[
-      {en:"Present Perfect for recent experiences ('I've had a fever since…')", pt:"Presente perfeito"},
-      {en:"Have to / must for necessity", pt:"Necessidade/obrigação"},
-      {en:"Imperatives for advice", pt:"Imperativos"}
-    ],
-    tasks:[
-      "Describe symptoms to a doctor.",
-      "Call emergency services (simulated).",
-      "Understand pharmacy advice.",
-      "Fill a basic medical form."
-    ],
-    dialogue:[
-      ["You","I've had a headache since this morning."],
-      ["Doctor","You should rest and drink water. If it gets worse, come back."]
-    ],
-    vocab:[
-      ["symptom","sintoma"],["fever","febre"],["headache","dor de cabeça"],
-      ["allergy","alergia"],["prescription","receita"],["dose","dosagem"],["emergency","emergência"]
-    ]
+  { week:9, title:"Health & Emergencies", cefr:"B1",
+    canDo:["Explain symptoms & history","Understand basic medical advice","Handle emergencies calmly"],
+    grammar:[ {en:"Present Perfect for recent experiences",pt:"Presente perfeito"},
+              {en:"Have to / must for necessity",pt:"Necessidade/obrigação"},
+              {en:"Imperatives for advice",pt:"Imperativos"}],
+    tasks:["Describe symptoms to a doctor.","Call emergency services (simulated).","Understand pharmacy advice.","Fill a basic medical form."],
+    dialogue:[["You","I've had a headache since this morning."],["Doctor","You should rest and drink water. If it gets worse, come back."]],
+    vocab:[["symptom","sintoma"],["fever","febre"],["headache","dor de cabeça"],["allergy","alergia"],["prescription","receita"],["dose","dosagem"],["emergency","emergência"]]
   },
-  {
-    week:10, title:"Narration — Past & Future Plans", cefr:"B1",
-    canDo:[
-      "Tell short stories of trips/events",
-      "Discuss future plans & intentions",
-      "Compare past vs. now"
-    ],
-    grammar:[
-      {en:"Past Simple vs. Present Perfect", pt:"Passado simples vs. presente perfeito"},
-      {en:"Going to vs. Will", pt:"Futuro (plano vs. decisão)"},
-      {en:"Time markers (last year, recently, tomorrow…)", pt:"Marcadores de tempo"}
-    ],
-    tasks:[
-      "Tell a travel story with a problem & solution.",
-      "Plan next month’s goals.",
-      "Compare life now vs. two years ago.",
-      "Record a 60‑sec story."
-    ],
-    dialogue:[
-      ["A","Last weekend we went hiking and got lost for an hour!"],
-      ["B","Wow. Are you going to try again next month?"]
-    ],
-    vocab:[
-      ["trip","viagem"],["goal","meta"],["plan","plano"],["decide","decidir"],
-      ["improve","melhorar"],["achieve","alcançar"],["recently","recentemente"]
-    ]
+  { week:10, title:"Narration — Past & Future Plans", cefr:"B1",
+    canDo:["Tell short stories of trips/events","Discuss future plans & intentions","Compare past vs. now"],
+    grammar:[ {en:"Past Simple vs. Present Perfect",pt:"Passado simples vs. presente perfeito"},
+              {en:"Going to vs. Will",pt:"Futuro (plano vs. decisão)"},
+              {en:"Time markers",pt:"Marcadores de tempo"}],
+    tasks:["Tell a travel story with a problem & solution.","Plan next month’s goals.","Compare life now vs. two years ago.","Record a 60-sec story."],
+    dialogue:[["A","Last weekend we went hiking and got lost for an hour!"],["B","Wow. Are you going to try again next month?"]],
+    vocab:[["trip","viagem"],["goal","meta"],["plan","plano"],["decide","decidir"],["improve","melhorar"],["achieve","alcançar"],["recently","recentemente"]]
   },
-  {
-    week:11, title:"Opinions, Comparisons, Suggestions", cefr:"B1→B1+",
-    canDo:[
-      "Express opinions & reasons",
-      "Compare options to decide",
-      "Make suggestions & agree/disagree politely"
-    ],
-    grammar:[
-      {en:"Comparatives with nuance (slightly, far, a lot)", pt:"Intensificadores"},
-      {en:"Should/ought to/had better", pt:"Conselhos/sugestões"},
-      {en:"Linkers: in my opinion, in contrast, on the other hand", pt:"Conectivos de opinião"}
-    ],
-    tasks:[
-      "Choose between travel options.",
-      "Give advice to a coworker.",
-      "Debate a light topic (online/offline).",
-      "Write short opinion paragraph."
-    ],
-    dialogue:[
-      ["A","In my opinion, trains are more comfortable than buses."],
-      ["B","I agree, but buses are much cheaper."]
-    ],
-    vocab:[
-      ["opinion","opinião"],["compare","comparar"],["suggest","sugerir"],
-      ["agree/disagree","concordar/discordar"],["pros/cons","prós/contras"]
-    ]
+  { week:11, title:"Opinions, Comparisons, Suggestions", cefr:"B1→B1+",
+    canDo:["Express opinions & reasons","Compare options to decide","Make suggestions & agree/disagree politely"],
+    grammar:[ {en:"Comparatives with nuance (slightly, far…)",pt:"Intensificadores"},
+              {en:"Should/ought to/had better",pt:"Conselhos"},
+              {en:"Linkers: in my opinion, on the other hand",pt:"Conectivos de opinião"}],
+    tasks:["Choose between travel options.","Give advice to a coworker.","Debate a light topic.","Write short opinion paragraph."],
+    dialogue:[["A","In my opinion, trains are more comfortable than buses."],["B","I agree, but buses are much cheaper."]],
+    vocab:[["opinion","opinião"],["compare","comparar"],["suggest","sugerir"],["agree/disagree","concordar/discordar"],["pros/cons","prós/contras"]]
   },
-  {
-    week:12, title:"Integration & Capstone", cefr:"B1+",
-    canDo:[
-      "Sustain 10‑minute conversation on travel/work/life",
-      "Handle problems & solutions politely",
-      "Tell coherent stories with opinions"
-    ],
-    grammar:[
-      {en:"Review: tenses, modals, linkers", pt:"Revisão geral"},
-      {en:"Connected speech & chunking", pt:"Pronúncia conectada"},
-      {en:"Interview strategies", pt:"Estratégias de entrevista"}
-    ],
-    tasks:[
-      "Mock interview / immigration desk.",
-      "Complex travel scenario (multi‑step).",
-      "Work status update + negotiation.",
-      "Capstone oral + written reflection."
-    ],
-    dialogue:[
-      ["Officer","What's the purpose of your visit?"],
-      ["You","I'm here for work meetings and a short vacation afterwards."]
-    ],
-    vocab:[
-      ["purpose","propósito"],["afterwards","depois"],["negotiate","negociar"],
-      ["checkpoint","ponto de controle"],["summary","resumo"],["feedback","feedback"]
-    ],
+  { week:12, title:"Integration & Capstone", cefr:"B1+",
+    canDo:["Sustain 10-minute conversation on travel/work/life","Handle problems & solutions politely","Tell coherent stories with opinions"],
+    grammar:[ {en:"Review: tenses, modals, linkers",pt:"Revisão geral"},
+              {en:"Connected speech & chunking",pt:"Pronúncia conectada"},
+              {en:"Interview strategies",pt:"Estratégias de entrevista"}],
+    tasks:["Mock interview / immigration desk.","Complex travel scenario (multi-step).","Work status update + negotiation.","Capstone oral + written reflection."],
+    dialogue:[["Officer","What's the purpose of your visit?"],["You","I'm here for work meetings and a short vacation afterwards."]],
+    vocab:[["purpose","propósito"],["afterwards","depois"],["negotiate","negociar"],["checkpoint","ponto de controle"],["summary","resumo"],["feedback","feedback"]],
     capstone:true
   }
 ];
 
-/* ======= i18n (basic UI toggles) ======= */
-let UI_PT = false;
-const T = (en,pt) => UI_PT ? pt : en;
-
-/* ======= State & Persistence ======= */
-const KEY = "suaps_english_course_v1";
-let state = JSON.parse(localStorage.getItem(KEY) || "null") || {
-  week:1, day:1, // day 1..5
-  srs:{ // Leitner: box 1..5
-    cards:[], // {id,en,pt,box,next}
-  },
-  recordings:{}, // {'w1d1': blobUrl}
-  quizScores:{}, // {'w1d5': {score, total}}
-  ui:{voice:null, rate:0.9, ui_pt:false}
-};
-
-function save(){ localStorage.setItem(KEY, JSON.stringify(state)); document.getElementById('statusPill').textContent = T("Saved locally","Salvo localmente"); }
-
-/* ======= Utility ======= */
-function el(tag, attrs={}, children=[]){
-  const x = document.createElement(tag);
-  for(const k in attrs){ if(k==="dataset"){ Object.assign(x.dataset, attrs[k]); } else if(k==="html"){ x.innerHTML = attrs[k]; } else { x.setAttribute(k, attrs[k]); } }
-  (Array.isArray(children)?children:[children]).filter(Boolean).forEach(c=> x.append(c.nodeType?c:document.createTextNode(c)));
-  return x;
+/* ======= i18n ======= */
+function updateUIStrings() {
+    const lang = state.ui.ui_pt ? 'pt' : 'en';
+    document.querySelectorAll('[data-t-en]').forEach(el => {
+        el.innerHTML = el.dataset[`t-${lang}`];
+    });
 }
-function id(x){ return document.getElementById(x); }
-function wkey(w=state.week,d=state.day){ return `w${w}d${d}`; }
 
-/* ======= Build Week List ======= */
+
+/* ======= State ======= */
+const KEY = "suaps_english_course_v2";
+let state = JSON.parse(localStorage.getItem(KEY) || "null") || {
+  week:1, day:1, // 1..5 (Mon..Fri)
+  srs:{cards:[]}, // {id,en,pt,box,next}
+  recordings:{},  // {'w1d1': blobUrl}
+  quizScores:{},  // {'w1d5': {score,total,ts}}
+  ui:{voice:null, rate:0.95, ui_pt:false}
+};
+function save(){ 
+    localStorage.setItem(KEY, JSON.stringify(state)); 
+    id('statusPill').textContent = state.ui.ui_pt ? "Salvo localmente" : "Saved locally";
+}
+
+/* ======= Helpers ======= */
+const id = x => document.getElementById(x);
+function el(tag, attrs={}, kids=[]){ const n=document.createElement(tag); for(const k in attrs){ if(k==="html") n.innerHTML=attrs[k]; else n.setAttribute(k, attrs[k]); } (Array.isArray(kids)?kids:[kids]).forEach(k=> n.append(k?.nodeType?k:document.createTextNode(k??""))); return n; }
+function wkey(w=state.week,d=state.day){ return `w${w}d${d}`; }
+function getWeekData(w=state.week){ return COURSE.find(x=>x.week===w); }
+function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+const T = (en, pt) => state.ui.ui_pt ? pt : en;
+
+/* ======= UI Build ======= */
 function buildWeekList(){
   const wrap = id('weekList'); wrap.innerHTML="";
   COURSE.forEach(w=>{
-    const doneCount = (state.quizScores[`w${w.week}d5`]?.score ? 1:0);
-    const b = el('button', {class:`weekBtn ${state.week===w.week?'active':''}`}, [
-      `Week ${w.week}: ${w.title} `,
-      el('span',{class:'muted'},[` · ${w.cefr}`])
-    ]);
+    const done = state.quizScores[`w${w.week}d5`]?.score!=null;
+    const b = el('button',{class:`weekBtn ${state.week===w.week?'active':''}`},[`${T("Week","Semana")} ${w.week}: ${w.title} `, el('span',{class:'muted'},[`· ${w.cefr} ${done?' · ✅':''}`])]);
     b.onclick=()=>{ state.week=w.week; state.day=1; save(); renderAll(); };
     wrap.append(b);
   });
 }
 
-/* ======= Daily Plan Generation ======= */
-function getWeekData(w=state.week){
-  return COURSE.find(x=>x.week===w);
-}
 function buildObjectives(){
   const w = getWeekData();
   id('dayLabel').textContent = T(`Week ${w.week} · Day ${state.day}` , `Semana ${w.week} · Dia ${state.day}`);
@@ -567,13 +339,12 @@ function buildObjectives(){
   const ul = el('ul');
   w.canDo.forEach(c=> ul.append(el('li',{},[c])));
   obj.append(ul);
-
   if(state.day<5){
     obj.append(el('h4',{},[T("Today’s Flow","Fluxo de hoje")]));
     obj.append(el('ol',{},[
       el('li',{},[T("Comprehensible input (dialogue) + shadowing","Input compreensível (diálogo) + sombra")]),
-      el('li',{},[T("Task‑based speaking/writing","Tarefa de fala/escrita")]),
-      el('li',{},[T("Grammar focus (brief, high‑yield)","Gramática (breve, efetiva)")]),
+      el('li',{},[T("Task-based speaking/writing","Tarefa de fala/escrita")]),
+      el('li',{},[T("Grammar focus (brief, high-yield)","Gramática (breve, efetiva)")]),
       el('li',{},[T("SRS flashcards + retrieval practice","SRS + prática de recuperação")]),
     ]));
   } else {
@@ -582,46 +353,72 @@ function buildObjectives(){
   id('objectives').innerHTML=""; id('objectives').append(obj);
 }
 
-/* ======= Input & Shadowing ======= */
 function buildDialogue(){
   const w = getWeekData();
   const box = el('div');
-  const transNote = el('div',{class:'small muted'},[T("Portuguese hints appear on hover.","Dicas em português aparecem ao passar o mouse.")]);
-  box.append(transNote);
-  w.dialogue.forEach((pair,i)=>{
-    const line = el('div',{class:'q',title:""},[
-      el('strong',{},[pair[0]+": "]),
-      el('span',{title:""},[pair[1]])
-    ]);
+  box.append(el('div',{class:'small muted'},[T("Portuguese hints appear on hover.","Dicas em português aparecem ao passar o mouse.")]));
+  w.dialogue.forEach(pair=>{
+    const v = w.vocab.find(voca => pair[1].includes(voca[0]))
+    const line = el('div',{class:'q', title: v ? v[1] : ""},[ el('strong',{},[pair[0]+": "]), el('span',{},[pair[1]]) ]);
     box.append(line);
   });
-  // Add daily micro‑variation: shuffle wording a bit (for simplicity we keep original).
   id('dialogue').innerHTML=""; id('dialogue').append(box);
 }
 
-/* ======= Tasks ======= */
+function generatePromptForWeek(w, day){
+    const tasks = w.tasks;
+    if (day >= 1 && day <= tasks.length) {
+        return tasks[day - 1];
+    }
+    return tasks[tasks.length - 1]; // Fallback to the last task
+}
+
+
 function buildTasks(){
   const w = getWeekData();
   const todayTasks = (()=>{
-    const base = [...w.tasks];
-    if(state.day===1) return base.slice(0,1);
-    if(state.day===2) return base.slice(1,2);
-    if(state.day===3) return base.slice(2,3);
-    if(state.day===4) return base.slice(3,4);
-    return ["Assessment day."];
+    if(state.day === 5) return [T("Assessment day. Review this week's content.","Dia de avaliação. Revise o conteúdo da semana.")];
+    const taskIndex = state.day - 1;
+    return w.tasks[taskIndex] ? [w.tasks[taskIndex]] : [T("Review today's dialogue and vocabulary.","Revise o diálogo e vocabulário de hoje.")];
   })();
   const box = el('div');
-  const ul = el('ul');
-  todayTasks.forEach(t=> ul.append(el('li',{},[t])));
+  const ul = el('ul'); todayTasks.forEach(t=> ul.append(el('li',{},[t])));
   box.append(ul);
-  // Short guided output prompt
-  box.append(el('p',{class:'small muted'},[T("Output prompt (write or speak for 60–90s):","Produção (escrever ou falar por 60–90s):")]));
-  const prompt = generatePromptForWeek(getWeekData(), state.day);
-  box.append(el('div',{class:'q'},[prompt]));
+  box.append(el('p',{class:'small muted'},[T("Output prompt (write or speak for 60–90s):","Produção (falar/escrever por 60–90s):")]));
+  box.append(el('div',{class:'q'},[generatePromptForWeek(getWeekData(), state.day)]));
   id('tasks').innerHTML=""; id('tasks').append(box);
 }
 
-/* ======= Grammar ======= */
+function grammarFormTip(name){
+  const n = name.toLowerCase();
+  if(n.includes("present simple")) return "S + base verb (3rd person: adds -s). Questions with Do/Does.";
+  if(n.includes("continuous")) return "Be (am/is/are) + verb-ing.";
+  if(n.includes("polite requests")) return "Could/Would/Can + subject + base verb.";
+  if(n.includes("comparatives")) return "Adj+er / more + adj; superlatives: the + adj+est / the most + adj.";
+  if(n.includes("imperatives")) return "Base verb: 'Turn left', 'Go straight'.";
+  if(n.includes("past simple")) return "Regular: verb+ed; Irregular: memorize.";
+  if(n.includes("present perfect")) return "Have/has + past participle; link past to now.";
+  if(n.includes("first conditionals")) return "If + present, will + base.";
+  return "Keep forms short and accurate.";
+}
+function grammarUseTip(name){
+  const n = name.toLowerCase();
+  if(n.includes("present simple")) return "Habits, routines, facts, schedules.";
+  if(n.includes("continuous")) return "Actions in progress or near-future arrangements.";
+  if(n.includes("polite requests")) return "Courteous service/work contexts.";
+  if(n.includes("comparatives")) return "Compare and decide.";
+  if(n.includes("past simple")) return "Finished past events (specific time).";
+  if(n.includes("present perfect")) return "Experiences/recent change with present impact.";
+  if(n.includes("first conditionals")) return "Likely future outcomes based on a condition.";
+  return "Used for clarity and natural communication.";
+}
+function miniDrill(name){
+  const n = name.toLowerCase();
+  if(n.includes("present simple")) return `"I ___ (wake) at 7. She ___ (start) at 9."`;
+  if(n.includes("polite requests")) return `"___ you help me with this? (Could/Would/Can)"`;
+  if(n.includes("comparatives")) return `"A is ___ (cheap) than B. B is the ___ (good)."`;
+  return "Make 3 sentences using today’s pattern.";
+}
 function buildGrammar(){
   const w = getWeekData();
   const g = w.grammar[(state.day-1)%w.grammar.length];
@@ -635,98 +432,114 @@ function buildGrammar(){
   id('grammar').innerHTML=""; id('grammar').append(box);
 }
 
-/* ======= Flashcards (SRS) ======= */
+/* ======= SRS (Leitner) ======= */
 function initCardsForWeek(wdata){
+  if (!state.srs.cards) state.srs.cards = [];
   const prefix = `w${wdata.week}_`;
   const have = new Set(state.srs.cards.map(c=>c.id));
-  const newOnes = wdata.vocab.map(([en,pt],i)=>({
-    id: prefix+i, en, pt, box:1, next: Date.now()
-  })).filter(x=>!have.has(x.id));
+  const newOnes = wdata.vocab.map(([en,pt],i)=>({id:prefix+i, en, pt, box:1, next: Date.now()})).filter(x=>!have.has(x.id));
   if(newOnes.length){ state.srs.cards.push(...newOnes); save(); }
 }
 function dueCards(){
   const now = Date.now();
-  return state.srs.cards.filter(c=>c.next<=now).slice(0,8); // limit per session
+  return state.srs.cards.filter(c=>c.next<=now).sort((a,b) => a.next - b.next).slice(0,8);
 }
 let currentCard = null;
 function schedule(card, quality){ // 0=Hard,1=Good,2=Easy
+  if (!card) return;
   const boxSteps = {1:1,2:2,3:4,4:7,5:12}; // days
   if(quality===0){ card.box = Math.max(1, card.box-1); }
   if(quality===1){ card.box = Math.min(5, card.box+1); }
   if(quality===2){ card.box = Math.min(5, card.box+2); }
   const days = boxSteps[card.box] || 1;
-  card.next = Date.now() + days*24*3600*1000;
-  save(); renderFlashcards();
+  card.next = Date.now() + days*24*3600*1000 * (0.8 + Math.random()*0.4); // Add jitter
+  save(); 
+  renderFlashcards();
 }
+let ptGlossVisible = false;
 function renderFlashcards(){
   const cont = id('flashcards'); cont.innerHTML="";
   const due = dueCards();
-  if(!due.length){ cont.append(el('div',{class:'muted'},[T("No cards due. Review finished!","Sem cartões pendentes. Revisão concluída!")]));
-    currentCard = null; return; }
-  currentCard = due[0];
-  cont.append(el('div',{class:'fcards'},[
-    el('div',{class:'fcart'},[
-      el('div',{class:'fcart'},[
-        el('div',{class:'fcart'})
-      ])
-    ])
-  ]);
-  const card = el('div',{class:'fcart'});
-  const f = el('div',{class:'fcart'});
-  const c = el('div',{class:'fcart'});
-  const box = el('div',{class:'fcart'});
-  const shown = el('div',{class:'fcart'});
-  const panel = el('div',{class:'fcart'});
-  cont.append(
-    el('div',{class:'fcart'})
-  );
-
-  cont.append(el('div',{class:'fcart'}));
-  cont.append(el('div',{class:'fcart'}));
-
-  const fc = el('div',{class:'fcart'});
-  const cardDiv = el('div',{class:'fcart'});
-  const v = el('div',{class:'fcart'});
-  // Minimal clean card
-  const cardBox = el('div',{class:'fcart'});
-  const core = el('div',{class:'fcart'});
-
-  const fcard = el('div',{class:'fcart fcard'},[
-    el('div',{},[el('strong',{},[currentCard.en])]),
-    el('div',{class:'muted'},["Português: ",currentCard.pt]),
-    el('div',{class:'small muted'},[`Box ${currentCard.box}`]),
-    el('div',{},[
-      el('button',{onclick:()=>tts(currentCard.en)},["🔊 TTS"]),
-      el('button',{onclick:()=>revealPT()},["👁️ Hide/Show PT"])
-    ])
-  ]);
-  function revealPT(){
-    const m = fcard.querySelector('.muted');
-    m.style.display = (m.style.display==="none") ? "" : "none";
+  if(!due.length){ 
+    cont.append(el('div',{class:'muted'},[T("No cards due. Review finished!","Sem cartões pendentes. Revisão concluída!")]));
+    currentCard = null; 
+    ['fcHard', 'fcGood', 'fcEasy'].forEach(btnId => id(btnId).disabled = true);
+    return; 
   }
-  cont.append(fcard);
+  ['fcHard', 'fcGood', 'fcEasy'].forEach(btnId => id(btnId).disabled = false);
+
+  currentCard = due[0];
+  ptGlossVisible = false;
+
+  const f = el('div',{},[
+    el('div',{class:'row',style:"justify-content:space-between"},[
+      el('div',{},[el('strong',{},[currentCard.en])]),
+      el('div',{class:'small muted'},[`Box ${currentCard.box}`])
+    ]),
+    el('div',{class:'small muted',id:'ptGloss', style: 'display:none;'},["Português: ",currentCard.pt]),
+    el('div',{class:'row'},[
+      el('button',{onclick:()=>tts(currentCard.en)},["🔊 TTS"]),
+      el('button',{onclick:()=>{ ptGlossVisible = !ptGlossVisible; id('ptGloss').style.display = ptGlossVisible ? '' : 'none'; }},["👁️ PT on/off"])
+    ])
+  ]);
+  cont.append(f);
 }
 
-/* ======= Retrieval practice ======= */
+/* ======= Retrieval ======= */
 function buildRetrieval(){
   const w = getWeekData();
-  // 3 quick prompts: translation, fill gap, short answer
+  const v = pick(w.vocab);
+  const promptForDay = generatePromptForWeek(w, state.day);
   const prompts = [
-    {q:`Translate to English: "${pick(w.vocab)[0] || 'wake up'}" (PT hint: "${pick(w.vocab)[1]}")`, key:"trans"},
-    {q:`Fill the gap: "I ____ up at seven."`, key:"gap"},
-    {q:`Short answer: ${generatePromptForWeek(w, state.day)}`, key:"free"}
+    {q:T(`Translate to English: "${v[1]}"`,`Traduza para o inglês: "${v[1]}"`), key:"trans", placeholder: v[0]},
+    {q:T(`Use in a sentence: "${v[0]}"`,`Use numa frase: "${v[0]}"`), key:"gap", placeholder: `e.g., I have a meeting at 10 AM.`},
+    {q:T(`Short answer: ${promptForDay}`,`Resposta curta: ${promptForDay}`), key:"free", placeholder: T('Write 1-2 sentences here...','Escreva 1-2 frases aqui...')}
   ];
   const box = el('div');
-  prompts.forEach((p,i)=>{
+  prompts.forEach(p=>{
     const div = el('div',{class:'q'});
     div.append(el('div',{},[p.q]));
-    div.append(el('textarea',{id:`ret_${p.key}`}));
+    div.append(el('textarea',{id:`ret_${p.key}`, placeholder: p.placeholder}));
     box.append(div);
   });
   id('retrieval').innerHTML=""; id('retrieval').append(box);
+  id('retrievalResult').innerHTML = "";
 }
+id('checkRetrieval').onclick = ()=>{
+  const tr = id('ret_trans')?.value?.trim()||"";
+  const gap = id('ret_gap')?.value?.trim()||"";
+  const free = id('ret_free')?.value?.trim()||"";
+  const msgs=[];
+  if(tr.length > 0) msgs.push(T("✅ Translation attempt saved.","✅ Tentativa de tradução salva."));
+  if(gap.length > 10) msgs.push(T("✅ Sentence attempt saved.","✅ Tentativa de frase salva."));
+  if(free.length > 20) msgs.push(T("✅ Good length for output.","✅ Bom tamanho para a resposta."));
+  id('retrievalResult').innerHTML = msgs.length ? msgs.join(" ") : T("Try answering each box for maximum benefit.","Tente responder cada caixa para o benefício máximo.");
+  // Note: No need to save this to state, it's a transient practice
+};
 
-/* ======= Assessment (Fridays) ======= */
+/* ======= Assessment ======= */
+function generateQuiz(w){
+  const mc1 = (()=>{
+    const v = pick(w.vocab);
+    const pool = w.vocab.map(x=>x[0]).filter(x=>x !== v[0]);
+    const wrong = [...new Set(pool)].sort(()=>Math.random()-0.5).slice(0,3);
+    const opts = [v[0],...wrong].sort(()=>Math.random()-0.5);
+    return {type:'mc', q:T(`Select the English for "${v[1]}"`,`Selecione o inglês para "${v[1]}"`), opts, answer:v[0]};
+  })();
+
+  const grammarPoint = pick(w.grammar);
+  const grammarQ = {type:'text', q:T(`Write a sentence using "${grammarPoint.en}"`,`Escreva uma frase usando "${grammarPoint.en}"`), answer: "check"};
+
+  const text1 = {type:'text', q:T(`Write 1–2 sentences for this task: ${pick(w.tasks)}`,`Escreva 1-2 frases para esta tarefa: ${pick(w.tasks)}`), answer:"check"};
+  const speak = {type:'speak', q:T("Speaking task: record a 30–60s response to a prompt from this week.","Tarefa de fala: grave uma resposta de 30-60s para uma das tarefas da semana.")};
+  
+  const quizItems = [mc1, grammarQ, text1, speak];
+  if(w.capstone){
+     const t2 = {type:'text', q:T(`Capstone: summarize a 3-step plan for one of this week's scenarios.`,`Capstone: resuma um plano de 3 passos para um dos cenários da semana.`), answer:"check"};
+     quizItems.splice(3, 0, t2);
+  }
+  return quizItems;
+}
 function buildAssessment(){
   const assess = id('assessment');
   if(state.day!==5){ assess.style.display='none'; return; }
@@ -734,270 +547,211 @@ function buildAssessment(){
   const w = getWeekData();
   const items = generateQuiz(w);
   const qbox = id('quiz'); qbox.innerHTML="";
+  
+  const pastResult = state.quizScores[wkey()];
+  if (pastResult) {
+      const score = pastResult.score;
+      const total = pastResult.total;
+      qbox.innerHTML = `<p>${T("You have already completed this assessment.","Você já completou esta avaliação.")}</p>
+                        <p><b>${T("Score","Pontuação")}:</b> ${score}/${total} ${score/total>=0.8?'<span class="good">✓ great</span>': score/total>=0.6?'<span class="warn">~ ok</span>':'<span class="bad">✗ needs review</span>'}</p>`;
+      id('submitQuiz').style.display = 'none';
+      id('quizResult').innerHTML = "";
+      return;
+  }
+  id('submitQuiz').style.display = 'block';
+
   items.forEach((it,idx)=>{
     const wrap = el('div',{class:'q'});
     wrap.append(el('div',{},[`${idx+1}. ${it.q}`]));
     if(it.type==='mc'){
-      it.opts.forEach((op,j)=>{
-        const lab = el('label',{},[
+      it.opts.forEach(op=>{
+        const lab = el('label',{style:"display:block; margin: 0.25rem 0;"},[
           el('input',{type:'radio',name:`q${idx}`,value:op}), " ", op
         ]);
         wrap.append(el('div',{},[lab]));
       });
     } else if(it.type==='text'){
-      wrap.append(el('input',{type:'text',id:`q${idx}`,style:"width:100%"}));
+      wrap.append(el('textarea',{id:`q${idx}`,style:"width:100%; min-height:40px;"}));
     } else if(it.type==='speak'){
-      wrap.append(el('div',{class:'small muted'},["Speak your answer and record below."]));
+      wrap.append(el('div',{class:'small muted'},[T("Speak your answer and use the recorder above.","Fale sua resposta e use o gravador acima.")]));
     }
     qbox.append(wrap);
   });
+
   id('submitQuiz').onclick = ()=>{
-    let score=0, total=items.length-1; // speaking not auto‑graded
+    let score=0, total=items.filter(x=>x.type!=='speak').length;
     items.forEach((it,idx)=>{
       if(it.type==='mc'){
         const v = [...document.getElementsByName(`q${idx}`)].find(x=>x.checked)?.value;
-        if(v===it.answer) score++;
+        if(v && v.toLowerCase() === it.answer.toLowerCase()) score++;
       } else if(it.type==='text'){
         const v = id(`q${idx}`).value.trim().toLowerCase();
-        if(v.includes(it.answer.toLowerCase())) score++;
+        if(v.length > 10) score++; // Simple check for a reasonable attempt
       }
     });
     id('quizResult').innerHTML = `<b>${T("Score","Pontuação")}:</b> ${score}/${total} ${score/total>=0.8?'<span class="good">✓ great</span>': score/total>=0.6?'<span class="warn">~ ok</span>':'<span class="bad">✗ needs review</span>'}`;
-    state.quizScores[wkey()]={score,total,ts:Date.now()}; save(); renderProgress();
+    state.quizScores[wkey()]={score,total,ts:Date.now()}; save(); renderProgress(); buildWeekList();
+    id('submitQuiz').style.display = 'none';
   };
 }
 
 /* ======= Progress ======= */
 function renderProgress(){
-  // crude: proportion of weeks with assessment done
   const total=COURSE.length;
   let done=0;
-  COURSE.forEach(w=>{
-    if(state.quizScores[`w${w.week}d5`]?.score!=null) done++;
-  });
-  const pct = Math.round((done/total)*100);
-  id('overallBar').style.width = pct+"%";
-}
-
-/* ======= Prompts/Quiz Helpers ======= */
-function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
-function generatePromptForWeek(w, day){
-  // tailor to travel/work/life; rotate
-  if(day===5) return "Assessment day – review this week’s dialogues and vocab.";
-  const base = {
-    1:"Describe your weekday routine. Include times and 3 habits.",
-    2:"Explain your plan at the airport from check‑in to boarding.",
-    3:"Introduce your job and ask for clarification on a task.",
-    4:"Compare two products and decide which to buy within a budget.",
-    5:"Assessment day."
-  };
-  const map = {
-    1:base[day],
-    2:base[day],
-    3:base[day],
-    4:base[day],
-    5:base[day],
-    6:"Start a conversation and invite a friend to an event.",
-    7:"Run a 10‑min meeting: agenda, requests, decisions.",
-    8:"Describe a problem and propose a solution.",
-    9:"Explain symptoms and ask for advice.",
-    10:"Tell a short travel story. Then plan a future trip.",
-    11:"Give your opinion and compare two options.",
-    12:"Do a mock immigration or job interview."
-  };
-  return map[w.week] || base[day];
-}
-function generateQuiz(w){
-  const mc1 = (()=>{
-    const v = pick(w.vocab);
-    const wrong = w.vocab.filter(x=>x!==v).slice(0,3).map(x=>x[0]);
-    const opts = [v[0],...wrong].sort(()=>Math.random()-0.5);
-    return {type:'mc', q:`Select the English for "${v[1]}"`, opts, answer:v[0]};
-  })();
-  const mc2 = {type:'mc', q:`Choose the best polite request:`, opts:[
-    "Could you help me with this?", "You help me this.", "I want help you.", "Help me, ok?"
-  ], answer:"Could you help me with this?"};
-  const text1 = {type:'text', q:`Write a 1‑2 sentence answer: ${generatePromptForWeek(w,4)}`, answer: (w.week<=4?"buy":"decide")};
-  const speak = {type:'speak', q:"Speaking task: record a 30‑60s response to the week prompt."};
-  // Week 12 adds extra items
-  if(w.capstone){
-    const t2 = {type:'text', q:`Capstone: summarize a 3‑step plan for a complex scenario in this week.`, answer:"plan"};
-    return [mc1, mc2, text1, t2, speak];
-  }
-  return [mc1, mc2, text1, speak];
-}
-
-/* ======= Grammar helper tips ======= */
-function grammarFormTip(name){
-  const n = name.toLowerCase();
-  if(n.includes("present simple")) return "S + base verb (3rd person: adds -s). Questions with Do/Does + base.";
-  if(n.includes("continuous")) return "Be (am/is/are) + verb‑ing.";
-  if(n.includes("polite requests")) return "Could/Would/Can + subject + base verb.";
-  if(n.includes("comparatives")) return "Adj+er / more + adj; superlatives: the + adj+est / the most + adj.";
-  if(n.includes("imperatives")) return "Base verb: 'Turn left', 'Go straight'.";
-  if(n.includes("past simple")) return "Regular: verb+ed; Irregular: learned forms.";
-  if(n.includes("present perfect")) return "Have/has + past participle; link past to now.";
-  if(n.includes("first conditionals")) return "If + present, will + base.";
-  return "See examples and keep it short and accurate.";
-}
-function grammarUseTip(name){
-  const n = name.toLowerCase();
-  if(n.includes("present simple")) return "Habits, routines, facts, schedules.";
-  if(n.includes("continuous")) return "Actions in progress or near‑future arrangements.";
-  if(n.includes("polite requests")) return "Use in service/work contexts to be courteous.";
-  if(n.includes("comparatives")) return "Compare two or more things to decide.";
-  if(n.includes("past simple")) return "Finished past events, specific time expressions.";
-  if(n.includes("present perfect")) return "Experiences/recent changes with connection to present.";
-  if(n.includes("first conditionals")) return "Likely future outcomes based on conditions.";
-  return "Used for clarity and natural communication.";
-}
-function miniDrill(name){
-  const n = name.toLowerCase();
-  if(n.includes("present simple")) return `"I ___ (wake) at 7. She ___ (start) at 9."`;
-  if(n.includes("polite requests")) return `"___ you help me with this? Could/Would/Can"`;
-  if(n.includes("comparatives")) return `"A is ___ (cheap) than B. B is the ___ (good)."`;
-  return "Make 3 sentences using today’s pattern.";
+  COURSE.forEach(w=>{ if(state.quizScores[`w${w.week}d5`]?.score!=null) done++; });
+  id('overallBar').style.width = Math.round((done/total)*100) + "%";
 }
 
 /* ======= TTS ======= */
 let voices=[];
 function loadVoices(){
-  voices = speechSynthesis.getVoices().filter(v=>v.lang.startsWith("en"));
+  voices = speechSynthesis.getVoices().filter(v=>/^en/i.test(v.lang) && !v.name.includes("Google"));
   const sel = id('voiceSelect'); sel.innerHTML="";
-  voices.forEach((v,i)=>{
-    const o = el('option',{value:String(i)},[v.name+" ("+v.lang+")"]);
-    sel.append(o);
-  });
-  if(state.ui.voice!=null && voices[state.ui.voice]) sel.value = String(state.ui.voice);
+  voices.forEach((v,i)=> sel.append(el('option',{value:String(i)},[v.name+" ("+v.lang+")"])));
+  
+  // Try to set a preferred default voice
+  const preferredVoices = ["Alex", "Daniel", "Samantha", "Google US English", "Microsoft David - English (United States)"];
+  let defaultVoiceIndex = voices.findIndex(v => preferredVoices.includes(v.name));
+  if(defaultVoiceIndex === -1) defaultVoiceIndex = 0; // fallback to first available
+
+  if(state.ui.voice != null && voices[state.ui.voice]) {
+      sel.value = String(state.ui.voice);
+  } else {
+      sel.value = String(defaultVoiceIndex);
+      state.ui.voice = defaultVoiceIndex;
+  }
 }
-speechSynthesis.onvoiceschanged = loadVoices;
+// This can be flaky, so we try multiple times
+if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = loadVoices;
+}
+setTimeout(loadVoices, 100); // Also try after a short delay
 
 function tts(text){
-  if(!text) return;
+  if(!text || speechSynthesis.speaking) return;
   const u = new SpeechSynthesisUtterance(text);
   const idx = parseInt(id('voiceSelect').value||"0",10);
   if(voices[idx]) u.voice = voices[idx];
-  u.rate = parseFloat(id('rate').value||state.ui.rate||0.9);
+  u.rate = parseFloat(id('rate').value||state.ui.rate||0.95);
+  speechSynthesis.cancel(); // avoid overlap
   speechSynthesis.speak(u);
 }
 
 /* ======= Recording ======= */
 let media=null, chunks=[];
 async function startRec(){
-  if(!navigator.mediaDevices) return alert("No mic available");
-  const stream = await navigator.mediaDevices.getUserMedia({audio:true});
-  media = new MediaRecorder(stream);
-  chunks=[];
-  media.ondataavailable=e=>chunks.push(e.data);
-  media.onstop=()=>{
-    const blob = new Blob(chunks,{type:'audio/webm'});
-    const url = URL.createObjectURL(blob);
-    id('me').src = url;
-    id('playMeBtn').disabled=false;
-    state.recordings[wkey()] = url;
-    save();
-  };
-  media.start();
-  id('recBtn').disabled=true; id('stopBtn').disabled=false;
+  try{
+    const stream = await navigator.mediaDevices.getUserMedia({audio:true});
+    media = new MediaRecorder(stream);
+    chunks=[];
+    media.ondataavailable=e=>chunks.push(e.data);
+    media.onstop=()=>{
+      const blob = new Blob(chunks,{type:'audio/webm'});
+      const url = URL.createObjectURL(blob);
+      id('me').src = url;
+      id('playMeBtn').disabled=false;
+      // Note: We don't save recordings to localStorage as they can be large.
+      // They are ephemeral for the session.
+    };
+    media.start();
+    id('recBtn').disabled=true; id('stopBtn').disabled=false;
+    id('recBtn').textContent = '...';
+  }catch(e){
+    alert("Microphone not available or permission denied.");
+  }
 }
 function stopRec(){
-  if(media && media.state!=="inactive") media.stop();
+  if(media && media.state!=="inactive"){ media.stop(); }
   id('recBtn').disabled=false; id('stopBtn').disabled=true;
+  id('recBtn').textContent = '⏺️ Record';
 }
 
-/* ======= Retrieval check ======= */
-id('checkRetrieval').onclick = ()=>{
-  const tr = id('ret_trans')?.value?.trim()||"";
-  const gap = id('ret_gap')?.value?.trim()||"";
-  const free = id('ret_free')?.value?.trim()||"";
-  let msg = [];
-  if(tr.length>0) msg.push("✅ Translation attempt saved.");
-  if(gap.match(/\b(get|wake|stand)\b/i)) msg.push("✅ Gap likely correct.");
-  if(free.length>40) msg.push("✅ Good length for output.");
-  if(msg.length===0) msg = ["Try answering each box for maximum benefit."];
-  id('retrievalResult').innerHTML = msg.join(" ");
-  save();
-};
-
-/* ======= Shadow session ======= */
-let shadowTimer=null;
-function startShadow(){
-  const w = getWeekData();
-  const full = w.dialogue.map(x=>x[1]).join(". ");
-  tts(full);
-  id('shadowBtn').disabled=true;
-  shadowTimer = setTimeout(()=>{
-    id('shadowBtn').disabled=false;
-  }, 30000);
-}
-
-/* ======= Render All ======= */
-function renderAll(){
-  UI_PT = state.ui.ui_pt;
-  buildWeekList();
-  const w = getWeekData();
-  initCardsForWeek(w);
-  buildObjectives();
+/* ======= Build All Lesson Blocks ======= */
+function buildAllLessonBlocks(){
   buildDialogue();
   buildTasks();
   buildGrammar();
   renderFlashcards();
   buildRetrieval();
   buildAssessment();
-  renderProgress();
 }
 
-/* ======= Navigation ======= */
+/* ======= Render All ======= */
+function renderAll(){
+  updateUIStrings();
+  buildWeekList();
+  const w = getWeekData();
+  initCardsForWeek(w);
+  buildObjectives();
+  buildAllLessonBlocks();
+  renderProgress();
+  id('rate').value = state.ui.rate;
+}
+
+/* ======= Navigation & Controls ======= */
 id('prevDay').onclick = ()=>{ state.day = Math.max(1, state.day-1); save(); renderAll(); };
 id('nextDay').onclick = ()=>{ state.day = Math.min(5, state.day+1); save(); renderAll(); };
 
-/* ======= Buttons ======= */
 id('speakBtn').onclick = ()=>{
   const w = getWeekData();
-  const full = w.dialogue.map(x=>x[1]).join(". ");
-  tts(full);
+  tts(w.dialogue.map(x=>x.join(": ")).join(". "));
 };
-id('shadowBtn').onclick = startShadow;
+id('shadowBtn').onclick = ()=>{
+  const w = getWeekData();
+  tts(w.dialogue.map(x=>x[1]).join(". "));
+  id('shadowBtn').disabled = true;
+  setTimeout(()=> id('shadowBtn').disabled=false, 30000);
+};
 id('recBtn').onclick = startRec;
 id('stopBtn').onclick = stopRec;
 id('playMeBtn').onclick = ()=> id('me').play();
 
-id('fcHard').onclick = ()=> currentCard && schedule(currentCard,0);
-id('fcGood').onclick = ()=> currentCard && schedule(currentCard,1);
-id('fcEasy').onclick = ()=> currentCard && schedule(currentCard,2);
+id('fcHard').onclick = ()=> schedule(currentCard,0);
+id('fcGood').onclick = ()=> schedule(currentCard,1);
+id('fcEasy').onclick = ()=> schedule(currentCard,2);
 
-id('toggleLang').onclick = ()=>{
-  state.ui.ui_pt = !state.ui.ui_pt; UI_PT = state.ui.ui_pt; save(); renderAll();
-};
+id('toggleLang').onclick = ()=>{ state.ui.ui_pt=!state.ui.ui_pt; save(); renderAll(); };
 id('voiceSelect').onchange = (e)=>{ state.ui.voice = parseInt(e.target.value,10)||0; save(); };
-id('rate').oninput = (e)=>{ state.ui.rate = parseFloat(e.target.value)||0.9; save(); };
+id('rate').oninput = (e)=>{ state.ui.rate = parseFloat(e.target.value)||0.95; save(); };
 
-/* ======= Export/Import ======= */
 id('exportBtn').onclick = ()=>{
   const blob = new Blob([JSON.stringify(state)],{type:'application/json'});
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = 'course_backup.json';
+  a.download = `course_backup_${new Date().toISOString().slice(0,10)}.json`;
   a.click();
+  URL.revokeObjectURL(a.href);
 };
 id('importBtn').onclick = ()=> id('importFile').click();
 id('importFile').addEventListener('change', async (e)=>{
   const file = e.target.files[0]; if(!file) return;
-  const text = await file.text();
   try{
-    const data = JSON.parse(text);
-    state = data; save(); renderAll();
-  }catch(err){ alert("Invalid backup file."); }
+    const data = JSON.parse(await file.text());
+    if (data.week && data.srs && data.ui) {
+        state = data; 
+        save(); 
+        renderAll();
+        alert('Restore successful!');
+    } else {
+        alert("Invalid backup file format.");
+    }
+  }catch(err){ alert("Error reading backup file."); console.error(err); }
+  id('importFile').value = ''; // Reset file input
 });
 
 /* ======= Hotkeys ======= */
 document.addEventListener('keydown',(e)=>{
-  if(e.key.toLowerCase()==='s'){ const w = getWeekData(); const full = w.dialogue.map(x=>x[1]).join(". "); tts(full); }
-  if(e.key.toLowerCase()==='r'){ startRec(); }
+  // Don't trigger hotkeys if user is typing in a textarea/input
+  if (e.target.tagName === 'TEXTAREA' || e.target.tagName === 'INPUT') return;
+  
+  const k = e.key.toLowerCase();
+  if(k==='s'){ e.preventDefault(); id('speakBtn').click(); }
+  if(k==='r'){ e.preventDefault(); if(!id('recBtn').disabled) id('recBtn').click(); else id('stopBtn').click(); }
 });
 
-/* ======= Kickoff ======= */
-window.addEventListener('load', ()=>{
+/* ======= Init ======= */
+window.addEventListener('DOMContentLoaded', ()=>{
   loadVoices();
   renderAll();
 });
